@@ -73,7 +73,7 @@ services:
     image: rabbitmq:alpine
 
   txs-worker-indexer: &txs-worker
-    image: safeglobal/safe-transaction-service:${TXS_VERSION}
+    image: exsatnetwork/safe-transaction-service:${TXS_VERSION}
     env_file:
       - container_env_files/txs.env
     environment:
@@ -107,7 +107,7 @@ services:
         condition: service_healthy
 
   txs-web:
-    image: safeglobal/safe-transaction-service:${TXS_VERSION}
+    image: exsatnetwork/safe-transaction-service:${TXS_VERSION}
     env_file:
       - container_env_files/txs.env
     environment:
@@ -147,7 +147,7 @@ services:
     <<: *redishealthcheck
 
   cgw-web:
-    image: exsatnetwork/safe-client-gateway-nest:${CGW_VERSION}
+    image: exsatnetwork/safe-client-gateway:${CGW_VERSION}
     env_file:
       - container_env_files/cgw.env
     depends_on:
@@ -173,7 +173,7 @@ services:
       start_period: 15s
 
   events-web:
-    image: exsatnetwork/safe-events-service:${EVENTS_VERSION}
+    image: safeglobal/safe-events-service:${EVENTS_VERSION}
     env_file:
       - container_env_files/events.env
     depends_on:
