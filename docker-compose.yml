@@ -79,7 +79,7 @@ services:
     environment:
       - ETHEREUM_NODE_URL=${RPC_NODE_URL}
       - RUN_MIGRATIONS=1
-      - WORKER_QUEUES=default,indexing
+      - WORKER_QUEUES=default,indexing,processing
     depends_on:
       txs-db:
         condition: service_healthy
@@ -147,7 +147,7 @@ services:
     <<: *redishealthcheck
 
   cgw-web:
-    image: safeglobal/safe-client-gateway-nest:${CGW_VERSION}
+    image: exsatnetwork/safe-client-gateway-nest:${CGW_VERSION}
     env_file:
       - container_env_files/cgw.env
     depends_on:
@@ -155,7 +155,7 @@ services:
         condition: service_healthy
 
   ui:
-    image: safeglobal/safe-wallet-web:${UI_VERSION}
+    image: exsatnetwork/safe-wallet-web:${UI_VERSION}
     env_file:
       - container_env_files/ui.env
     depends_on:
@@ -173,7 +173,7 @@ services:
       start_period: 15s
 
   events-web:
-    image: safeglobal/safe-events-service:${EVENTS_VERSION}
+    image: exsatnetwork/safe-events-service:${EVENTS_VERSION}
     env_file:
       - container_env_files/events.env
     depends_on:
