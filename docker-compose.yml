@@ -153,7 +153,8 @@ services:
     depends_on:
       cgw-redis:
         condition: service_healthy
-
+      cfg-db:
+        condition: service_healthy
   ui:
     image: exsatnetwork/safe-wallet-web:${UI_VERSION}
     env_file:
